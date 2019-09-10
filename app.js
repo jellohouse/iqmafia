@@ -27,4 +27,4 @@ app.get('/apply/:jobId', homeController.apply);
 app.post('/apply/:jobId', homeController.applyPost);
 app.get('/success', homeController.success);
 
-app.listen(3000, () => console.log('Gator app listening on port 3000!'));
+app.listen(3002, () => console.log('Gator app listening on port 3002!'));
