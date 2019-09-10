@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .container-fluid
+    form(method='POST' action='/apply/'+jobId)
+
+      .form-group
+        label(for='name') Name
+        input#exampleInputEmail1.form-control(type='text' name='name')
+
+      .form-group
+        label(for='email') Email address
+        small#emailHelp.form-text.text-muted Please enter your valid @uwaterloo.ca email address.
+        input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp'
+         placeholder='Enter email' name='email')
+
+      .form-group
+        label(for='experience') Experience/Skills
+        small#emailHelp.form-text.text-muted Relevant to this specific job offer.
+        //input(disabled  maxlength="3" size="3" value="10" id="counter")
+        textarea#exampleInputEmail1.form-control(type='text' name='experience')
+
+      button.btn.btn-primary(type='submit') Submit

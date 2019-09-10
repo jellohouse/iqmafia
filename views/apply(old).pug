@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .container-fluid
+    form(method='POST' action='/apply/'+jobId)
+      .form-group
+        label(for='email') Email address
+        input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp' placeholder='Enter email' name='email')
+        small#emailHelp.form-text.text-muted We&apos;ll never share your email with anyone else.
+      button.btn.btn-primary(type='submit') Submit
+
+      //  .container-fluid
+          iframe(class="airtable-embed", src="https://airtable.com/embed/shrggZ9AWdjRLQVRY?backgroundColor=green", frameborder="0", onmousewheel="", style="background: transparent; width: 100%; height: 999px;")

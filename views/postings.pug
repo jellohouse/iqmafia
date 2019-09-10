@@ -1,0 +1,117 @@
+extends layout
+
+block content
+  .container-fluid
+    .row.justify-content-center
+      .col-12.col-lg-10.col-xl-8
+        // Header
+        //.header.mt-md-5
+        //  .header-body
+            // Pretitle
+        //    h6.header-pretitle
+        //      | IQmafia - University of Waterloo
+            // Title
+        //    h1.header-title
+        //      | Job Postings
+
+
+        .card
+          .card-body.text-center
+            .row.justify-content-center
+              .col-12
+                //.row
+                  .col-4
+                    // Card
+                    .card
+                      .card-body
+                        // Title
+                        h6.text-uppercase.text-center.text-muted
+                          | Part-time contracts
+                        img.img-fluid(src="assets/images/time.png")
+                  .col-12.col-lg-4
+                    // Card
+                    .card
+                      .card-body
+                        // Title
+                        h6.text-uppercase.text-center.text-muted
+                          | Verified UW students
+                        img.img-fluid(src="assets/images/uwaterloo2.png")
+                  .col-12.col-lg-4
+                    // Card
+                    .card
+                      .card-body
+                        // Title
+                        h6.text-uppercase.text-center.text-muted
+                          | Simple market
+                        img.img-fluid(src="assets/images/market.png")
+
+                h3
+                  | This is an email-based group to match uWaterloo students with companies or people that need part-time developement work done :)
+
+                hr
+
+                p.text-sm
+                  | Subscribe to the newsletter to get updated on new contract opportunities.
+
+                form(method='POST' action='/newsletter')
+                  .input-group
+                    input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp' placeholder='example@uwaterloo.ca' name='email')
+                    .input-group-append
+                      button.btn.btn-primary.btn-sm(type='submit') Sign Up
+
+
+        each val in postings
+          // Card
+          .card
+            .card-body
+              h2.card-title
+                p= val.Title
+              p.card-text.text-muted
+                small= val['Job Description']
+
+              p.card-text
+              each skill in val['Required Skills']
+                span.badge.badge-soft-info(style="margin-right: 6px")= skill
+
+              hr
+              .row.align-items-center
+                .col
+                  h5.mb-0
+                    | Contract Type
+                .col-auto
+                  small.text-muted= val['Contract Type']
+              hr
+              if (val['Contract Type'] == 'Hourly')
+                .row.align-items-center
+                  .col
+                    h5.mb-0
+                      | Hourly Rate
+                  .col-auto
+                    time.small.text-muted= '$'+val['Hourly Rate']+'.00'
+                hr
+                .row.align-items-center
+                  .col
+                    h5.mb-0
+                      | Hours per Week
+                  .col-auto
+                    small.text-muted= val['Hours per Week']
+              else
+                .row.align-items-center
+                  .col
+                    h5.mb-0
+                      | Offer
+                  .col-auto
+                    small.text-muted= '$'+val['Project Based Offer']+'.00'
+
+              hr
+
+              .row.align-items-center.justify-content-between
+                .col-auto
+                  small
+                    span.text-success &#x25CF;
+                    = ' ' + val['Company/Owner']
+                    p.text-muted= 'Posted on ' + val['Created Time']
+                      //span.fe.fe-clock
+                .col-auto
+                  a.btn.btn-sm.btn-primary(href="/apply/"+val['ID'])
+                    | Apply
