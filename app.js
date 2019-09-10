@@ -1,3 +1,4 @@
+var secrets = require('./config/secrets.js');
 const express = require('express');
 var bodyParser = require('body-parser')
 //const dotenv = require('dotenv');
@@ -27,4 +28,4 @@ app.get('/apply/:jobId', homeController.apply);
 app.post('/apply/:jobId', homeController.applyPost);
 app.get('/success', homeController.success);
 
-app.listen(3002, () => console.log('Gator app listening on port 3002!'));
+app.listen(secrets.port, () => console.log('Gator app listening on port '+secrets.port));
