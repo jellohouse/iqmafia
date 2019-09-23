@@ -106,9 +106,13 @@ exports.postJob = (req, res) => {
  */
 exports.apply = (req, res) => {
   //res.send("tagId is set to " + req.params.jobId);
-  res.render('apply', {
-    title: 'Apply',
-    jobId: req.params.jobId,
+  base('Job Postings').find(req.params.jobId, function(err, record) {
+    if (err) { console.error(err); return; }
+    res.render('apply', {
+      title: 'Apply',
+      jobId: req.params.jobId,
+      posting: record.fields,
+    });
   });
 };
 

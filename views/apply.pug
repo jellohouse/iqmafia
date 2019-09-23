@@ -2,6 +2,59 @@ extends layout
 
 block content
   .container-fluid
+    h2 You are applying to:
+    .card
+      .card-body
+        h2.card-title
+          p= posting.Title
+        p.card-text.text-muted
+          small= posting['Job Description']
+
+        p.card-text
+        each skill in posting['Required Skills']
+          span.badge.badge-soft-info(style="margin-right: 6px")= skill
+
+        hr
+        .row.align-items-center
+          .col
+            h5.mb-0
+              | Contract Type
+          .col-auto
+            small.text-muted= posting['Contract Type']
+        hr
+        if (posting['Contract Type'] == 'Hourly')
+          .row.align-items-center
+            .col
+              h5.mb-0
+                | Hourly Rate
+            .col-auto
+              time.small.text-muted= '$'+posting['Hourly Rate']+'.00'
+          hr
+          .row.align-items-center
+            .col
+              h5.mb-0
+                | Hours per Week
+            .col-auto
+              small.text-muted= posting['Hours per Week']
+        else
+          .row.align-items-center
+            .col
+              h5.mb-0
+                | Offer
+            .col-auto
+              small.text-muted= '$'+posting['Project Based Offer']+'.00'
+
+        hr
+
+        .row.align-items-center.justify-content-between
+          .col-auto
+            small
+              span.text-success &#x25CF;
+              = ' ' + posting['Company/Owner']
+              p.text-muted= 'Posted on ' + posting['Created Time']
+                //span.fe.fe-clock
+
+
     form(method='POST' action='/apply/'+jobId)
 
       .form-group
@@ -12,7 +65,7 @@ block content
         label(for='email') Email address
         small#emailHelp.form-text.text-muted Please enter your valid @uwaterloo.ca email address.
         input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp'
-         placeholder='Enter email' name='email')
+         placeholder='example@uwaterloo.ca' name='email')
 
       .form-group
         label(for='experience') Experience/Skills
