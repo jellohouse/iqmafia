@@ -28,7 +28,7 @@ exports.index = (req, res) => {
       fetchNextPage();
   }, function done(err) {
       if (err) { console.error(err); return; }
-      console.log("OYYY", rows);
+      //console.log("OYYY", rows);
       res.render('postings', {
         title: 'Job Postings',
         postings: rows,
